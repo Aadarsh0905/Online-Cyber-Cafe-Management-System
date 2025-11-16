@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CyberSphere | POS & Billing</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ======= HEADER ======= -->
+  <header class="topbar">
+    <div class="brand">CyberSphere</div>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">🏠 Home</a>
+      <a href="booking.html" class="nav-btn">💻 Bookings</a>
+      <a href="billings.html" class="nav-btn active">🧾 Billings</a>
+      <a href="membership.html" class="nav-btn">🎟️ Membership</a>
+      <a href="admin.html" class="nav-btn">🛠️ Admin</a>
+    </nav>
+  </header>
+
+  <!-- ======= MAIN CONTENT ======= -->
+  <main>
+    <h1>🧾 Automated Billing & POS System</h1>
+
+    <div class="card grid-2">
+      <!-- LEFT: MENU SECTION -->
+      <div>
+        <h3>🍴 Menu Items</h3>
+        <p class="muted">Click an item to add it to your cart.</p>
+        <div id="menu" class="pos-menu"></div>
+      </div>
+
+      <!-- RIGHT: CART SECTION -->
+      <div>
+        <h3>🛒 Your Cart</h3>
+        <div class="card-inner">
+          <ul id="cart" class="cart-list"></ul>
+          <div class="row between">
+            <div>Total: ₹<span id="total">0</span></div>
+            <button id="payBtn" class="primary">Pay Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECEIPT (optional) -->
+    <div class="card">
+      <h3>🧾 Payment Receipt (Demo)</h3>
+      <div id="receipt" class="receipt muted">No transaction yet.</div>
+    </div>
+  </main>
+
+  <!-- ======= FOOTER ======= -->
+  <footer class="footer">
+    <div>© CyberSphere Cloud Suite • POS Billing Demo</div>
+  </footer>
+
+  <!-- ======= SCRIPT SECTION ======= -->
+  <script src="js/billingPOS.js"></script>
+  <script>
+    // ===== PAGE INITIALIZATION =====
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuDiv = document.getElementById("menu");
+
+      // Render menu items dynamically
+      menuItems.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "pos-item";
+        div.innerHTML = `
+          <span>${item.name} - ₹${item.price}</span>
+          <button onclick="addToCart('${item.name}')">Add</button>
+        `;
+        menuDiv.append(div);
+      });
+
+      // Payment button click
+      document.getElementById("payBtn").addEventListener("click", () => {
+        const total = cart.reduce((s, i) => s + i.price, 0);
+        if (total === 0) {
+          alert("🛒 Your cart is empty!");
+          return;
+        }
+        processPayment();
+        document.getElementById("receipt").textContent =
+          "Last payment processed successfully for ₹" + total + " (Demo)";
+      });
+
+      // Initialize cart
+      renderCart();
+    });
+  </script>
+</body>
+</html>
