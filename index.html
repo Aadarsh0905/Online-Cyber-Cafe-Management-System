@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cyber Sphere Cloud Suite</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+ 
+  <header class="topbar">
+  <div class="brand">CyberSphere</div>
+  <nav class="nav">
+    <a href="index.html" class="nav-btn active">🏠 Home</a>
+    <a href="booking.html" class="nav-btn">💻 Bookings </a>
+    <a href="billings.html" class="nav-btn">🧾 Billings </a>
+    <a href="membership.html" class="nav-btn">🎟️ Membership</a>
+    <a href="gamingLibrary.html" class="nav-btn">🎮 Games</a>
+    <a href="admin.html" class="nav-btn">🛠️ Admin</a>
+  </nav>
+</header>
+
+
+  <main id="app">
+    <!-- Home -->
+    <section id="home" class="page active">
+      <h1 data-i18n="welcome">Welcome to CyberSphere Cloud Suite</h1>
+      <div class="card grid-2">
+        <div>
+          <h2 data-i18n="auth">Register / Sign-in</h2>
+          <div class="card-inner">
+            <form id="authForm">
+              <label data-i18n="name">Name</label>
+              <input id="name" required />
+              <label data-i18n="email">Email or Phone</label>
+              <input id="identifier" required />
+              <div class="row">
+                <button id="sendOtp" type="button">Send OTP</button>
+                <button id="biometricBtn" type="button">Use Biometric</button>
+              </div>
+              <label data-i18n="otp">Enter OTP</label>
+              <input id="otp" />
+              <button id="verifyOtp" type="button" class="primary">Verify & Login</button>
+            </form>
+            <div id="authMsg" class="muted"></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 data-i18n="status">Your Account</h2>
+          <div class="card-inner">
+            <div id="userInfo">Not logged in</div>
+            <button id="logoutBtn" class="danger">Logout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking -->
+    <section id="booking" class="page">
+      <h1 data-i18n="bookingTitle">Workstation Booking</h1>
+      <div class="card grid-2">
+        <div>
+          <h3 data-i18n="availability">Real-time Availability</h3>
+          <div id="wsGrid" class="ws-grid"></div>
+        </div>
+        <div>
+          <h3 data-i18n="bookNow">Book a Slot</h3>
+          <div class="card-inner">
+            <label data-i18n="selectWS">Select Workstation</label>
+            <select id="selectWs"></select>
+            <label data-i18n="duration">Duration (minutes)</label>
+            <input id="duration" type="number" min="15" value="60" />
+            <label data-i18n="startTime">Start Time</label>
+            <input id="startTime" type="datetime-local" />
+            <button id="bookBtn" class="primary">Book</button>
+            <div id="bookingMsg" class="muted"></div>
+            <h4 data-i18n="activeSessions">Active Sessions</h4>
+            <ul id="sessionsList" class="session-list"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Billing/POS -->
+    <section id="billing" class="page">
+      <h1 data-i18n="pos">POS & Automated Billing</h1>
+      <div class="card grid-2">
+        <div>
+          <h3 data-i18n="menu">Menu (Snacks & Drinks)</h3>
+          <div id="posMenu" class="pos-menu"></div>
+        </div>
+        <div>
+          <h3 data-i18n="cart">Cart</h3>
+          <div id="cartArea" class="card-inner">
+            <ul id="cartList"></ul>
+            <div class="row between">
+              <div>Total: ₹<span id="cartTotal">0</span></div>
+              <button id="payBtn" class="primary">Pay (Mock)</button>
+            </div>
+            <div id="receipt" class="receipt muted"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Membership -->
+    <section id="membership" class="page">
+      <h1 data-i18n="membershipTitle">Membership & Rewards</h1>
+      <div class="card">
+        <div class="card-inner">
+          <div id="membershipInfo"></div>
+          <div id="plans" class="grid-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Games -->
+    <section id="games" class="page">
+      <h1 data-i18n="games">Gaming Library</h1>
+      <div id="gamesGrid" class="ws-grid"></div>
+    </section>
+
+    <!-- Admin -->
+    <section id="admin" class="page">
+      <h1 data-i18n="adminDashboard">Admin Dashboard</h1>
+      <div class="card grid-2">
+        <div>
+          <h3 data-i18n="active">Active Sessions</h3>
+          <ul id="adminSessions" class="session-list"></ul>
+          <h3 data-i18n="controls">Remote Controls</h3>
+          <div id="remoteControls" class="card-inner"></div>
+        </div>
+        <div>
+          <h3 data-i18n="analytics">Analytics (Mock)</h3>
+          <canvas id="usageChart" width="400" height="200"></canvas>
+          <div id="alerts" class="alerts"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Voice Chatbot modal -->
+    <div id="chatbotModal" class="modal hidden">
+      <div class="modal-inner">
+        <h3 data-i18n="chatbot">Voice Chatbot</h3>
+        <div id="chatLog" class="chatlog"></div>
+        <div class="row">
+          <input id="chatInput" placeholder="Type or press Speak" />
+          <button id="speakBtn">Speak</button>
+          <button id="closeChat">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div>© CyberSphere - Demo • Data stored locally (no server)</div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
