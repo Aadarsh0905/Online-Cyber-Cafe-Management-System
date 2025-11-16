@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CyberSphere | Workstation Booking</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">CyberSphere</div>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">🏠 Home</a>
+      <a href="booking.html" class="nav-btn active">💻 Booking</a>
+      <a href="billing.html" class="nav-btn">🧾 Billing</a>
+      <a href="membership.html" class="nav-btn">🎟️ Membership</a>
+      <a href="admin.html" class="nav-btn">🛠️ Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>💺 Workstation Booking & Session Management</h1>
+
+    <div class="card grid-2">
+      <!-- Left: Workstation Availability -->
+      <div>
+        <h3>🖥️ Real-time Availability</h3>
+        <p class="muted">Click “Book” to reserve an available workstation.</p>
+        <div id="wsGrid" class="ws-grid"></div>
+      </div>
+
+      <!-- Right: Booking Form -->
+      <div>
+        <h3>📅 Book a Workstation</h3>
+        <div class="card-inner">
+          <label for="selectWS">Select Workstation</label>
+          <select id="selectWS"></select>
+
+          <label for="duration">Duration (minutes)</label>
+          <input id="duration" type="number" min="15" value="60" />
+
+          <button id="bookBtn" class="primary">Book</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Session List -->
+    <div class="card">
+      <h3>🕒 Active Sessions</h3>
+      <ul id="sessionsList" class="session-list"></ul>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>© CyberSphere Cloud Suite • Local Demo Only</div>
+  </footer>
+
+  <script src="js/booking.js"></script>
+  <script>
+    // ===== Initialize Page =====
+    document.addEventListener("DOMContentLoaded", () => {
+      const select = document.getElementById("selectWS");
+      workstations.forEach(ws => {
+        const opt = document.createElement("option");
+        opt.value = ws.id;
+        opt.textContent = ws.id;
+        select.append(opt);
+      });
+
+      renderWorkstations();
+
+      // Booking handler
+      document.getElementById("bookBtn").addEventListener("click", () => {
+        bookWorkstation();
+        updateSessions();
+      });
+    });
+
+    // ===== Show Active Sessions =====
+    function updateSessions() {
+      const list = document.getElementById("sessionsList");
+      list.innerHTML = "";
+      sessions.forEach(s => {
+        const li = document.createElement("li");
+        li.textContent = `${s.id} — ${s.remaining} min left`;
+        list.append(li);
+      });
+    }
+
+    // Re-render sessions every 10 seconds for UI freshness
+    setInterval(updateSessions, 10000);
+  </script>
+</body>
+</html>
