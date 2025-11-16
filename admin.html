@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CyberSphere | Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="topbar">
+    <div class="brand">CyberSphere</div>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">🏠 Home</a>
+      <a href="booking.html" class="nav-btn">💻 Booking</a>
+      <a href="billingPOS.html" class="nav-btn">🧾 Billing</a>
+      <a href="membership.html" class="nav-btn">🎟️ Membership</a>
+      <a href="gamingLibrary.html" class="nav-btn">🎮 Games</a>
+      <a href="admin.html" class="nav-btn active">🛠️ Admin</a>
+    </nav>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+    <h1>🛠️ Admin Dashboard</h1>
+
+    <!-- Reports & AI Analytics Grid -->
+    <div class="card grid-2">
+      <!-- Reports Section -->
+      <div>
+        <h3>📊 Reports</h3>
+        <p class="muted">View usage and financial summaries.</p>
+        <button id="btnLoadReports" class="primary">Load Summary</button>
+        <pre id="reportArea" class="card-inner" style="min-height:100px;"></pre>
+      </div>
+
+      <!-- AI Analytics Section -->
+      <div>
+        <h3>🤖 AI Analytics</h3>
+        <p class="muted">Detect idle systems and predict café activity trends.</p>
+        <button id="btnIdle" class="primary">Detect Idle</button>
+        <pre id="aiArea" class="card-inner" style="min-height:100px;"></pre>
+      </div>
+    </div>
+
+    <!-- Remote Control Section -->
+    <div class="card" style="margin-top:16px;">
+      <h3>🖥️ Remote Workstation Control</h3>
+      <p class="muted">Perform quick actions like locking or restarting systems remotely.</p>
+
+      <label for="adminWs">Select Workstation</label>
+      <select id="adminWs"></select>
+
+      <div class="row" style="margin-top:10px;">
+        <button id="lockBtn" class="danger">Lock</button>
+        <button id="restartBtn" class="primary">Restart</button>
+      </div>
+    </div>
+
+    <!-- Logout Button -->
+    <div style="margin-top:20px; text-align:right;">
+      <button id="btnLogout" class="danger">Logout</button>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div>© CyberSphere Cloud Suite • Admin Tools Demo</div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // === Admin Dashboard Mock Logic ===
+    document.addEventListener("DOMContentLoaded", () => {
+      const workstations = ["WS1", "WS2", "WS3", "WS4", "WS5"];
+      const wsSelect = document.getElementById("adminWs");
+
+      // Populate workstation dropdown
+      workstations.forEach(ws => {
+        const opt = document.createElement("option");
+        opt.value = ws;
+        opt.textContent = ws;
+        wsSelect.append(opt);
+      });
+
+      // Load reports mock
+      document.getElementById("btnLoadReports").addEventListener("click", () => {
+        const report = `
+📋 Report Summary
+----------------------------
+Total Users: 38
+Total Sessions: 57
+Revenue Generated: ₹7,840
+Peak Usage Hours: 4 PM – 9 PM
+Most Active Workstation: WS3
+`;
+        document.getElementById("reportArea").textContent = report;
+      });
+
+      // AI analytics mock
+      document.getElementById("btnIdle").addEventListener("click", () => {
+        const aiReport = `
+🤖 AI Insights
+----------------------------
+Idle Systems Detected: WS2, WS5
+Predicted Next Peak: Tomorrow, 6 PM
+Recommendation: Optimize cooling & energy schedule.
+`;
+        document.getElementById("aiArea").textContent = aiReport;
+      });
+
+      // Remote control buttons
+      document.getElementById("lockBtn").addEventListener("click", () => {
+        const ws = wsSelect.value;
+        alert(`🔒 ${ws} has been locked remotely (demo).`);
+      });
+
+      document.getElementById("restartBtn").addEventListener("click", () => {
+        const ws = wsSelect.value;
+        alert(`🔁 ${ws} has been restarted successfully (mock).`);
+      });
+
+      // Logout function
+      document.getElementById("btnLogout").addEventListener("click", () => {
+        if (confirm("Are you sure you want to log out?")) {
+          alert("✅ Logged out successfully (demo).");
+          window.location.href = "index.html";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
