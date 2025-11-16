@@ -1,0 +1,341 @@
+/* ===========================================================
+   CyberSphere Cloud Suite - Unified Frontend Styles
+   Author: Aadarsh Ranjan
+   =========================================================== */
+
+/* ---------- Root & Reset ---------- */
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --accent: #2b6cb0;
+  --danger: #e53e3e;
+  --muted: #6b7280;
+  --text: #1a202c;
+  --border: #e6eef9;
+  --shadow: rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, #eef2f7, #f6f8fb);
+  color: var(--text);
+}
+
+/* ---------- Header & Navigation ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background: var(--card);
+  box-shadow: 0 2px 6px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.nav {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  border-color: var(--border);
+  background: #f0f7ff;
+}
+
+.lang {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+#voiceChatBtn {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+/* ---------- Layout ---------- */
+main {
+  padding: 18px;
+  max-width: 1100px;
+  margin: 12px auto;
+}
+
+.page {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 14px var(--shadow);
+}
+
+.card-inner {
+  padding: 10px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), transparent);
+}
+
+/* ---------- Inputs & Buttons ---------- */
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin: 6px 0;
+}
+
+button {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+button.primary:hover {
+  background: #1f5da8;
+}
+
+button.danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+button.danger:hover {
+  background: #c53030;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+/* ---------- Grid & Layout Helpers ---------- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 12px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.row.between {
+  justify-content: space-between;
+}
+
+/* ---------- Workstations ---------- */
+.ws-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.ws,
+.ws-card {
+  padding: 8px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.ws:hover,
+.ws-card:hover {
+  transform: scale(1.03);
+  background: #fff;
+}
+
+.ws.busy {
+  background: #fff0f0;
+  border-color: #ffd2d2;
+  color: #a51d1d;
+}
+
+.ws.active {
+  box-shadow: 0 6px 14px rgba(43, 108, 176, 0.15);
+}
+
+/* ---------- Session Lists & POS ---------- */
+.session-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.session-list li {
+  padding: 8px;
+  border-bottom: 1px dashed #eee;
+}
+
+.pos-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pos-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.receipt {
+  margin-top: 10px;
+  padding: 8px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* ---------- Modal & Chatbot ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 20, 30, 0.4);
+}
+
+.modal-inner {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 640px;
+}
+
+.hidden {
+  display: none;
+}
+
+.chatlog {
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #eee;
+  padding: 8px;
+  border-radius: 8px;
+  background: #fbfdff;
+  margin-bottom: 8px;
+}
+
+/* ---------- Alerts & Footer ---------- */
+.alerts {
+  margin-top: 10px;
+}
+
+.alert {
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #e3f2fd;
+  color: #0b5394;
+}
+
+.footer {
+  text-align: center;
+  padding: 14px;
+  color: var(--muted);
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+
+/* ---------- Animation ---------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .topbar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}
