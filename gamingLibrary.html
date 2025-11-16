@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CyberSphere | Gaming Library</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="topbar">
+    <div class="brand">CyberSphere</div>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">🏠 Home</a>
+      <a href="booking.html" class="nav-btn">💻 Booking</a>
+      <a href="billingPOS.html" class="nav-btn">🧾 Billing</a>
+      <a href="membership.html" class="nav-btn">🎟️ Membership</a>
+      <a href="gamingLibrary.html" class="nav-btn active">🎮 Games</a>
+      <a href="admin.html" class="nav-btn">🛠️ Admin</a>
+    </nav>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+    <h1>🎮 Gaming Library & Auto Updates</h1>
+
+    <div class="card">
+      <div class="card-inner">
+        <p class="muted">Select a game below to launch or update (demo actions).</p>
+        <div id="gamesGrid" class="ws-grid"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div>© CyberSphere Cloud Suite • Game Library Demo</div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/gamingLibrary.js"></script>
+  <script>
+    // === Initialize Gaming Library ===
+    document.addEventListener("DOMContentLoaded", () => {
+      const grid = document.getElementById("gamesGrid");
+
+      // Render all available games dynamically
+      games.forEach(game => {
+        const card = document.createElement("div");
+        card.className = "ws-card";
+        card.innerHTML = `
+          <h4>${game.name}</h4>
+          <p>Version: v${game.version.toFixed(1)}</p>
+          <div class="row">
+            <button class="primary" onclick="launchGame('${game.name}')">Launch</button>
+            <button onclick="updateGame('${game.name}')">Update</button>
+          </div>
+        `;
+        grid.append(card);
+      });
+    });
+  </script>
+</body>
+</html>
